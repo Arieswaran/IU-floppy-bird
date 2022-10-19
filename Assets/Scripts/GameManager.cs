@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver() {
-        gameOverCanvas.SetActive(true);
-        Time.timeScale = 0;
+        AnimationHelper.OpenPopupAnimation(gameOverCanvas.transform,delegate(){
+            Time.timeScale = 0;
+        });
     }
 
     public void Restart() {
