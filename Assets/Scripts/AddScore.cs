@@ -21,4 +21,9 @@ public class AddScore : MonoBehaviour
         ScoreController.instance.AddScore(rand+1);
         coin.gameObject.SetActive(false);
     }
+
+    private void OnEnable() {
+        rand = Random.Range(0, coinImgs.Length);
+        coinSprite.sprite = coinImgs[rand];
+    }
 }
