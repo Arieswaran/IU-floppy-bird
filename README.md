@@ -2,7 +2,7 @@
  
 Welcome to the IU Floppy Bird repository, where you can flap your wings and collect images of the beautiful Korean celebrity, IU!
 
-<iframe src="https://giphy.com/embed/ziY4yEU4wUxAqmgt0h" width="271" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/game-iu-floppy-bird-ziY4yEU4wUxAqmgt0h">via GIPHY</a></p>
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjk5ZGZiNGVhOWJjNDZmNWFmZjk2MDY4MWU1OTM0MDBmMzcyZDA4MCZjdD1n/ziY4yEU4wUxAqmgt0h/giphy.gif" width="100%" />
 
 Now, we know what you're thinking: "Why in the world would someone create a game like this?!" Well, dear reader, the answer is simple: boredom and obsession.
 
