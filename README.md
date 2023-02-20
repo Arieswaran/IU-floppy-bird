@@ -10,7 +10,7 @@ Now, I know what you're thinking: "Why in the world would someone create a game 
 
 Now, You may ask "Who is IU?" Well, IU is a Korean pop star who has been in the music industry for over 10 years. She is known for her beautiful voice and her unique style. She has released many hit songs, including "Good Day", "Palette", and "BBIBBI". She has also starred in many popular dramas, including "Hotel Del Luna" and "My Mister".
 
-TLDR: IU is a cool person, and I like her.
+*TLDR: IU is a cool person, and I like her*
 
 ## Why Floppy Bird?
 
@@ -18,7 +18,7 @@ I just wanted to try to make a simple game with Unity. Then I thought, "You know
 
 So go ahead, give IU Floppy Bird a try. You never know, you might just become a die-hard fan of both the game and the star herself. Happy flapping!
 
-TLDR: I just wanted to make a game.
+*TLDR: I just wanted to make a game*
 
 ## How to Play
 Just click on screen , duh.
