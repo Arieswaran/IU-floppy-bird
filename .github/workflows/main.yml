@@ -1,39 +1,48 @@
-name: Build APK
+name: Actions 😎
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  build-apk:
+  buildAndTestForLinuxBasedPlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - test-project
+        unityVersion:
+          - 2019.4.1f1
+          - 2020.2.1f1
+        targetPlatform:
+          - Android # Build an Android player.
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test results (all modes)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+       # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: Android
 
-    - name: Activate Unity
-      run: |
-        Unity -quit -batchmode -nographics -logFile - \
-        -username ${{ secrets.UNITY_EMAIL }} \
-        -password ${{ secrets.UNITY_PASSWORD }}
-        
-    - name: Build APK
-      run: |
-        Unity -quit -batchmode -nographics -logFile - \
-        -projectPath ${{ github.workspace }}/MyUnityProject \
-        -executeMethod BuildScript.BuildAndroid \
-        -buildTarget Android \
-        -androidAPILevel 30 \
-        -androidPackageVersionCode 1 \
-        -androidPackageVersionName 1.0.0 \
-        -androidKeystoreName iu.keystore \
-        -androidKeystorePass ${{ secrets.KEYSTORE_PASSWORD }} \
-        -androidKeyaliasName mykey \
-        -androidKeyaliasPass ${{ secrets.KEYSTORE_PASSWORD }}
-        
-    - name: Archive APK
-      uses: actions/upload-artifact@v2
-      with:
-        name: MyUnityProject
-        path: ${{ github.workspace }}/MyUnityProject/build/outputs/apk/debug/floppy_bird.apk
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
