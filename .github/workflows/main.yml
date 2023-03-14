@@ -1,0 +1,39 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Activate Unity
+      run: |
+        Unity -quit -batchmode -nographics -logFile - \
+        -username ${{ secrets.UNITY_EMAIL }} \
+        -password ${{ secrets.UNITY_PASSWORD }}
+        
+    - name: Build APK
+      run: |
+        Unity -quit -batchmode -nographics -logFile - \
+        -projectPath ${{ github.workspace }}/MyUnityProject \
+        -executeMethod BuildScript.BuildAndroid \
+        -buildTarget Android \
+        -androidAPILevel 30 \
+        -androidPackageVersionCode 1 \
+        -androidPackageVersionName 1.0.0 \
+        -androidKeystoreName iu.keystore \
+        -androidKeystorePass ${{ secrets.KEYSTORE_PASSWORD }} \
+        -androidKeyaliasName mykey \
+        -androidKeyaliasPass ${{ secrets.KEYSTORE_PASSWORD }}
+        
+    - name: Archive APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: MyUnityProject
+        path: ${{ github.workspace }}/MyUnityProject/build/outputs/apk/debug/floppy_bird.apk
