@@ -35,8 +35,12 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: Android
-
-      # Output
+          androidKeystoreName: user.keystore
+          androidKeystoreBase64: ${{ secrets.KEYSTORE_NAME }}
+          androidKeystorePass: ${{ secrets.KEYSTORE_PASSWORD }}
+          androidKeyaliasName: ${{ secrets.KEYSTORE_NAME }}
+          androidKeyaliasPass: ${{ secrets.KEYSTORE_PASSWORD }}
+        # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
