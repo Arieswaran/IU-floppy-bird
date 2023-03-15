@@ -36,9 +36,9 @@ jobs:
         with:
           targetPlatform: Android
           androidKeystoreName: iu.keystore
-          androidKeystoreBase64: ${{ secrets.KEYSTORE_NAME }}
+          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           androidKeystorePass: ${{ secrets.KEYSTORE_PASSWORD }}
-          androidKeyaliasName: ${{ secrets.KEYSTORE_NAME }}
+          androidKeyaliasName: ${{ secrets.KEYALIAS_NAME }}
           androidKeyaliasPass: ${{ secrets.KEYSTORE_PASSWORD }}
         # Output
       - uses: actions/upload-artifact@v2
