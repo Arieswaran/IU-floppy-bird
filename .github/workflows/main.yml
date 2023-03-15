@@ -35,7 +35,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: Android
-          androidKeystoreName: user.keystore
+          androidKeystoreName: iu.keystore
           androidKeystoreBase64: ${{ secrets.KEYSTORE_NAME }}
           androidKeystorePass: ${{ secrets.KEYSTORE_PASSWORD }}
           androidKeyaliasName: ${{ secrets.KEYSTORE_NAME }}
